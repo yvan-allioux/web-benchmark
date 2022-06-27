@@ -8,6 +8,7 @@
 <script>
     var start = window.performance.now();
     i = 3;//compteur
+    r = 0;
 
     //while (i != 500000+1){
     while (window.performance.now() - start < 20000){
@@ -21,6 +22,7 @@
                 break;
             }
             if(j == i-1){
+                r++;
                 //console.log('est premier : ', i);
                 //printf("premier");
             }
@@ -32,7 +34,7 @@
     var time = end - start;
     //console.log('time: ', time);
 
-    document.getElementById("result").innerHTML = "result : " + i + " ms";
+    document.getElementById("result").innerHTML = "result : " + r + " nombre premier trouve";
 </script>
 
 </body>
