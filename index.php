@@ -7,6 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Benchmark</title>
     <style>
+	h1{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h2{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h3{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        p{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        a{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
         body>* {
             text-align: center;
             margin-left: auto;
@@ -66,6 +83,15 @@
         it loads!</p>
     <h2 id="result">-</h2>
     <h3 id="share"></h3>
+    <?php
+        //$moyenne = $pdo->query("SELECT AVG(scorGrab) FROM `GRAB` WHERE device = 'mobile' LIMIT 1;")->fetch();
+
+        $moyenne2 = $pdo->prepare("SELECT AVG(scorGrab) FROM `GRAB` WHERE device = 'mobile' LIMIT 1;"); 
+        $moyenne2->execute(); 
+        $row = $moyenne2->fetch();
+
+        echo "- ".$row
+    ?>
 
     <script>
         const getDeviceType = () => {
@@ -116,9 +142,11 @@
 
             
             document.getElementById("result").innerHTML = "result : " + r + " prime number finds";
-            document.getElementById("share").innerHTML = "<a href=\"https://twitter.com/intent/tweet?text=the+computing+power+score+of+my+" + getDeviceType() + "+is+" + r + "%21%F0%9F%9A%80%0D%0A%0D%0A%28test+on+web+benchmark+%F0%9F%94%A5+https%3A%2F%2Fbit.ly%2FWebBenchmark%29\">Share my results on twitter !</a>";
-            httpGet("http://141.94.206.18/GetGrab.php?device=" + getDeviceType() + "&scor=" + r);
-        }
+            document.getElementById("share").innerHTML = "<a href=\"https://twitter.com/intent/tweet?text=The+computing+power+score+of+my+" + getDeviceType() + "+is+" + r + "%21%F0%9F%9A%80%0D%0A%0D%0A%28test+on+web+benchmark+%F0%9F%94%A5+https%3A%2F%2Fbit.ly%2FWeb-Benchmark%29%20\">Share my results on twitter !</a>";
+        
+	    
+	    httpGet("http://141.94.206.18/GetGrab.php?device=" + getDeviceType() + "&scor=" + r);
+	    }
 
         function httpGet(theUrl) {
             var xmlHttp = new XMLHttpRequest();
