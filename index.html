@@ -2,11 +2,13 @@
 <html>
 <body>
 
-<h1>benchmark calcul d'un max de nb premier en 20 seconde</h1>
+<h1>Benchmark calculation of a max of prime number in 20 seconds</h1>
+<h3 id="start" onclick="myFunction()">Click me to start the benchmark.</h3>
 <h2 id="result">wait</h2>
 
 <script>
-    var start = window.performance.now();
+    function myFunction() {
+  var start = window.performance.now();
     i = 3;//compteur
     r = 0;
 
@@ -34,7 +36,9 @@
     var time = end - start;
     //console.log('time: ', time);
 
-    document.getElementById("result").innerHTML = "result : " + r + " nombre premier trouve";
+    document.getElementById("result").innerHTML = "result : " + r + " prime number finds";
+}
+    
 </script>
 
 </body>
