@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<h1>Benchmark calculation of a max of prime number in 20 seconds</h1>
-<h3 id="start" onclick="myFunction()">Click me to start the benchmark.</h3>
-<h2 id="result">wait</h2>
+    <h1>Benchmark calculation of a max of prime number in 20 seconds</h1>
+    <button id="start" onclick="myFunction()">Click me to start the benchmark.</button>
+    <h2 id="result">-</h2>
 
-<script>
-    function myFunction() {
-  var start = window.performance.now();
-    i = 3;//compteur
-    r = 0;
+    <script>
+        function myFunction() {
+            
+            var start = window.performance.now();
+            i = 3; //compteur
+            r = 0;
 
-    //while (i != 500000+1){
-    while (window.performance.now() - start < 20000){
-    //while (1){
-        //printf("i %d", i);
+            //while (i != 500000+1){
+            while (window.performance.now() - start < 20000) {
+                //while (1){
+                //printf("i %d", i);
 
-        for(j = 2; j < i; j++){
-            //printf("- j %d ", j);
-            if(i % j == 0){
-                //printf("%d pas premier\n", i);
-                break;
+                for (j = 2; j < i; j++) {
+                    //printf("- j %d ", j);
+                    if (i % j == 0) {
+                        //printf("%d pas premier\n", i);
+                        break;
+                    }
+                    if (j == i - 1) {
+                        r++;
+                        //console.log('est premier : ', i);
+                        //printf("premier");
+                    }
+                }
+
+                i++;
             }
-            if(j == i-1){
-                r++;
-                //console.log('est premier : ', i);
-                //printf("premier");
-            }
-        }   
+            var end = window.performance.now();
+            var time = end - start;
+            //console.log('time: ', time);
 
-        i++;
-    }
-    var end = window.performance.now();
-    var time = end - start;
-    //console.log('time: ', time);
-
-    document.getElementById("result").innerHTML = "result : " + r + " prime number finds";
-}
-    
-</script>
+            document.getElementById("result").innerHTML = "result : " + r + " prime number finds";
+        }
+    </script>
 
 </body>
+
 </html>
