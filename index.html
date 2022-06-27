@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>benchmark temps de decherche de nb premier entre 2 et 500 000</h1>
+<h2 id="result">wait</h2>
+
+<script>
+    var start = window.performance.now();
+    i = 3;//compteur
+
+    while (i != 500000+1){
+    //while (1){
+        //printf("i %d", i);
+
+        for(j = 2; j < i; j++){
+            //printf("- j %d ", j);
+            if(i % j == 0){
+                //printf("%d pas premier\n", i);
+                break;
+            }
+            if(j == i-1){
+                //console.log('est premier : ', i);
+                //printf("premier");
+            }
+        }   
+
+        i++;
+    }
+    var end = window.performance.now();
+    var time = end - start;
+    //console.log('time: ', time);
+
+    document.getElementById("result").innerHTML = "result : " + time + " ms";
+</script>
+
+</body>
+</html>
