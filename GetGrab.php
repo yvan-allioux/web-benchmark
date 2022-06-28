@@ -32,6 +32,8 @@ PRIMARY KEY (ip, userAgent);
 ALTER TABLE GRAB
 ADD CONSTRAINT UC_Person UNIQUE (ip, userAgent);
 
+SELECT AVG(scorGrab) FROM `GRAB` WHERE device = 'mobile';
+
 */
 ?>
 
