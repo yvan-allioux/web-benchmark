@@ -170,7 +170,7 @@ $pdo->query("SET CHARACTER SET 'utf8'");
 
             
             document.getElementById("result").innerHTML = "Score of my " + getDeviceType() + " : " + r + " prime number finds";
-            document.getElementById("share").innerHTML = "<a href=\"https://twitter.com/intent/tweet?text=The+computing+power+score+of+my+" + getDeviceType() + "+is+" + r + "%21%F0%9F%9A%80%0D%0A%0D%0A%28test+on+web+benchmark+%F0%9F%94%A5+https%3A%2F%2Fbit.ly%2FWeb-Benchmark%29%20\">Share my results on twitter !</a>";
+            document.getElementById("share").innerHTML = "<button><a href=\"https://twitter.com/intent/tweet?text=The+computing+power+score+of+my+" + getDeviceType() + "+is+" + r + "%21%F0%9F%9A%80%0D%0A%0D%0A%28test+on+web+benchmark+%F0%9F%94%A5+https%3A%2F%2Fbit.ly%2FWeb-Benchmark%29%20\">Share my results on twitter !</a></button>";
             document.getElementById("result2").innerHTML = mostHie + " is the largest prime number found";
 	        httpGet("http://141.94.206.18/GetGrab.php?device=" + getDeviceType() + "&scor=" + r);
 	    }
