@@ -6,63 +6,30 @@ require("param.inc.php");
 $pdo = new PDO("mysql:host=" . MYHOST . ";dbname=" . MYDB, MYUSER, MYPASS);
 $pdo->query("SET NAMES utf8");
 $pdo->query("SET CHARACTER SET 'utf8'");
-
 ?>
 
-<!DOCTYPE html>
-
-
+<!doctype html>
 <html lang="en">
-<header>
+
+<head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Web Benchmark</title>
+
     <style>
-	h1{
+        h1,
+        h2,
+        h3,
+        a,
+        p {
             font-family: Arial, Helvetica, sans-serif;
-        }
-        h2{
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        h3{
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        p{
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        a{
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        body>* {
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #imageLoading {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-        }
-
-        #start {
-            display: block;
-            background-color: green;
-            border-radius: 10px;
-            border: 4px double #cccccc;
-            color: #eeeeee;
-            font-size: 28px;
-            padding: 20px;
-            width: 10cm;
-            transition: all 0.5s;
-            cursor: pointer;
+            text-decoration: none;
+            margin: 20px;
         }
 
         #rgb {
@@ -74,24 +41,33 @@ $pdo->query("SET CHARACTER SET 'utf8'");
                 color: red;
             }
 
-            50% {
+            25% {
                 color: blue;
+            }
+
+            50% {
+                color: yellowgreen;
+            }
+
+            75% {
+                color: green;
             }
 
             100% {
                 color: red;
             }
         }
-    </style>
-</header>
 
-<body>
+    </style>
+
+</head>
+
+<body class="text-center">
+
 
     <h1>Benchmark calculation of a max of prime number in 20 seconds</h1>
-    <button id="start" onclick="bench(20000);">Click here to start the benchmark and wait 20 seconds</button>
-    <p id="rgb">If this text has stopped changing color<br>
-        don't do anything<br>
-        it loads!</p>
+    <button type="button" class="btn btn-success m-1" onclick="bench(20000);">Click here to start the benchmark and wait 20 seconds</button>
+    <p class="m-1" id="rgb">If this text has stopped changing color <br>don't do anything <br>it loads!</p>
     <h2 id="result">-</h2>
 
     <?php
@@ -109,15 +85,7 @@ $pdo->query("SET CHARACTER SET 'utf8'");
     <h3 id="share"></h3>
     <p id="result2" style="color:lightgray"></p>
     <p style="color:lightgray">by yvan allioux</p>
-    <?php
-        //$moyenne = $pdo->query("SELECT AVG(scorGrab) FROM `GRAB` WHERE device = 'mobile' LIMIT 1;")->fetch();
 
-        /* $moyenne2 = $pdo->prepare("SELECT AVG(scorGrab) FROM `GRAB` WHERE device = 'mobile' LIMIT 1"); 
-        $moyenne2->execute(); 
-        $row = $moyenne2->fetch();
-
-        echo "- ".$row */
-    ?>
 
     <script>
         const getDeviceType = () => {
@@ -168,12 +136,12 @@ $pdo->query("SET CHARACTER SET 'utf8'");
             var time = end - start;
             //console.log('time: ', time);
 
-            
+
             document.getElementById("result").innerHTML = "Score of my " + getDeviceType() + " : " + r + " prime number finds";
-            document.getElementById("share").innerHTML = "<button><a href=\"https://twitter.com/intent/tweet?text=The+computing+power+score+of+my+" + getDeviceType() + "+is+" + r + "%21%F0%9F%9A%80%0D%0A%0D%0A%28test+on+web+benchmark+%F0%9F%94%A5+https%3A%2F%2Fbit.ly%2FWeb-Benchmark%29%20\">Share my results on twitter !</a></button>";
+            document.getElementById("share").innerHTML = "<button type=\"button\" class=\"btn btn-info\"><a href=\"https://twitter.com/intent/tweet?text=The+computing+power+score+of+my+" + getDeviceType() + "+is+" + r + "%21%F0%9F%9A%80%0D%0A%0D%0A%28test+on+web+benchmark+%F0%9F%94%A5+https%3A%2F%2Fbit.ly%2FWeb-Benchmark%29%20\">Share my results on twitter !</a> <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"30\" height=\"30\" fill=\"currentColor\" class=\"bi bi-twitter\" viewBox=\"0 0 16 16\"> <path d=\"M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z\"/> </svg></button>";
             document.getElementById("result2").innerHTML = mostHie + " is the largest prime number found";
-	        httpGet("http://141.94.206.18/GetGrab.php?device=" + getDeviceType() + "&scor=" + r);
-	    }
+            httpGet("http://141.94.206.18/GetGrab.php?device=" + getDeviceType() + "&scor=" + r);
+        }
 
         function httpGet(theUrl) {
             var xmlHttp = new XMLHttpRequest();
@@ -181,9 +149,11 @@ $pdo->query("SET CHARACTER SET 'utf8'");
             xmlHttp.send(null);
             return 0;
         }
-
     </script>
 
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
